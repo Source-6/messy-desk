@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://6873c72af1wx"]
+
+[ext_resource type="Script" uid="uid://cer57a0gilmkh" path="res://empty_scenes/finish_area.gd" id="1_37cmq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_enhxv"]
+
+[node name="finish_area" type="Area3D" unique_id=1657727005]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0, 0, 0)
+script = ExtResource("1_37cmq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1580147515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4458745, 0)
+shape = SubResource("BoxShape3D_enhxv")
+debug_color = Color(0.9863978, 0, 0.32880265, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

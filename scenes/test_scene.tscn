@@ -1,3 +1,60 @@
 [gd_scene format=3 uid="uid://dtov17prvmj4f"]
 
+[ext_resource type="PackedScene" uid="uid://dww50bdmt7i75" path="res://scenes/desk.tscn" id="1_g7g4h"]
+[ext_resource type="Script" uid="uid://bshw7w5vne1sa" path="res://scenes/car.gd" id="2_j8ivh"]
+[ext_resource type="Script" uid="uid://b2e8to3rpki84" path="res://scenes/camera_3d.gd" id="3_7ddre"]
+[ext_resource type="PackedScene" uid="uid://dl0fisdxdadqi" path="res://empty_scenes/respawn_area.tscn" id="4_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://6873c72af1wx" path="res://empty_scenes/finish_area.tscn" id="5_3qnke"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j8ivh"]
+friction = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j8ivh"]
+radius = 0.03
+
+[sub_resource type="SphereMesh" id="SphereMesh_nd71p"]
+radius = 0.03
+height = 0.02
+
 [node name="test scene" type="Node3D" unique_id=1569593579]
+
+[node name="desk" parent="." unique_id=1689809757 instance=ExtResource("1_g7g4h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000114142895, 0.0015710592, 0.0013322234)
+
+[node name="car_rb" type="RigidBody3D" parent="." unique_id=1243711675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15511832, 0.6976985, -0.3198015)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_j8ivh")
+gravity_scale = 0.6
+linear_damp_mode = 1
+script = ExtResource("2_j8ivh")
+metadata/_edit_group_ = true
+
+[node name="car_collision" type="CollisionShape3D" parent="car_rb" unique_id=791510496]
+shape = SubResource("SphereShape3D_j8ivh")
+debug_color = Color(0.49310088, 0.43210077, 1, 0.41960785)
+
+[node name="car_remote_transform" type="RemoteTransform3D" parent="car_rb" unique_id=1221311582]
+remote_path = NodePath("../../car_mesh")
+update_rotation = false
+update_scale = false
+
+[node name="car_mesh" type="MeshInstance3D" parent="." unique_id=1624518519]
+transform = Transform3D(0.61049294, 0, 0, 0, 1.2352648, 0, 0, 0, 1, -0.15511832, 0.6976985, -0.3198015)
+mesh = SubResource("SphereMesh_nd71p")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1806469060]
+transform = Transform3D(-1, 7.615293e-15, -8.742277e-08, -8.485281e-08, 0.24068543, 0.9706032, 2.1041386e-08, 0.9706032, -0.24068543, -0.0003142357, 1.2253991, -0.14365998)
+script = ExtResource("3_7ddre")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2099278296]
+transform = Transform3D(1, 0, 0, 0, -0.1472915, 0.9890931, 0, -0.9890931, -0.1472915, 0, 1.5373528, 0)
+
+[node name="respawn_area" parent="." unique_id=799529726 instance=ExtResource("4_qjeyg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.010341227, 0)
+
+[node name="finish_area" parent="." unique_id=1657727005 instance=ExtResource("5_3qnke")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0.036733568, 0.69410753, -0.13550074)

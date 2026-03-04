@@ -1,4 +1,5 @@
 extends Area3D
+@onready var car_rb: Car = $"../car_rb"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,4 +14,4 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Car:
-		print("victory")
+		car_rb.reset_car()

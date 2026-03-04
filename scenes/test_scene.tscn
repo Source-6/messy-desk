@@ -1,36 +1,223 @@
 [gd_scene format=3 uid="uid://dtov17prvmj4f"]
 
-[ext_resource type="PackedScene" uid="uid://dww50bdmt7i75" path="res://scenes/desk.tscn" id="1_g7g4h"]
+[ext_resource type="PackedScene" uid="uid://blkux7c652r07" path="res://blender3/car_model.blend" id="2_gthg3"]
 [ext_resource type="Script" uid="uid://bshw7w5vne1sa" path="res://scenes/car.gd" id="2_j8ivh"]
 [ext_resource type="Script" uid="uid://b2e8to3rpki84" path="res://scenes/camera_3d.gd" id="3_7ddre"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_h3xc6"]
 [ext_resource type="PackedScene" uid="uid://dl0fisdxdadqi" path="res://empty_scenes/respawn_area.tscn" id="4_qjeyg"]
 [ext_resource type="PackedScene" uid="uid://6873c72af1wx" path="res://empty_scenes/finish_area.tscn" id="5_3qnke"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_s36qc"]
+[ext_resource type="Texture2D" uid="uid://dlnc5gj2ovjf6" path="res://assets/finishline.png" id="6_u0xbq"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_6qxox"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_gthg3"]
+[ext_resource type="PackedScene" uid="uid://dlqkx32lr1stg" path="res://scenes/desk_3_2.tscn" id="9_h3xc6"]
+[ext_resource type="Script" uid="uid://ci1f24huo7dao" path="res://scenes/canvas_layer.gd" id="10_s36qc"]
+[ext_resource type="Shader" uid="uid://cmmx64plo5mx" path="res://scenes/textshader.gdshader" id="11_6qxox"]
+[ext_resource type="Texture2D" uid="uid://dxce57mrsypg1" path="res://assets/checkpoint.png" id="11_ntc4i"]
+[ext_resource type="PackedScene" uid="uid://bgpp51jxo8fw8" path="res://empty_scenes/checkpoint.tscn" id="12_8gixj"]
+[ext_resource type="Script" uid="uid://bsdv42m1agiyu" path="res://blender3/car_model.gd" id="15_pln1h"]
+[ext_resource type="Theme" uid="uid://ce2uyi827vc5x" path="res://addons/talo/samples/authentication/assets/theme.tres" id="16_hf2sn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j8ivh"]
-friction = 0.15
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j8ivh"]
-radius = 0.03
+radius = 0.012613902
 
 [sub_resource type="SphereMesh" id="SphereMesh_nd71p"]
-radius = 0.03
+radius = 0.02
 height = 0.02
+
+[sub_resource type="Sky" id="Sky_gthg3"]
+
+[sub_resource type="Environment" id="Environment_hf2sn"]
+background_mode = 2
+sky = SubResource("Sky_gthg3")
+ambient_light_source = 2
+ambient_light_color = Color(0, 1, 0.7529412, 1)
+glow_enabled = true
+glow_intensity = 1.06
+glow_strength = 1.03
+glow_bloom = 0.03
+
+[sub_resource type="Resource" id="Resource_ntc4i"]
+script = ExtResource("7_6qxox")
+
+[sub_resource type="Resource" id="Resource_u0xbq"]
+script = ExtResource("8_gthg3")
+fov = 58.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Environment" id="Environment_u0xbq"]
+background_mode = 2
+sky = SubResource("Sky_gthg3")
+ambient_light_source = 2
+ambient_light_color = Color(0, 1, 0.7529412, 1)
+glow_enabled = true
+glow_intensity = 1.06
+glow_strength = 1.03
+glow_bloom = 0.03
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s36qc"]
+size = Vector3(1.6610107, 1.5440063, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qxox"]
+size = Vector3(1.671524, 1.7175751, 1)
+
+[sub_resource type="Gradient" id="Gradient_6qxox"]
+colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gthg3"]
+gradient = SubResource("Gradient_6qxox")
+
+[sub_resource type="Gradient" id="Gradient_ntc4i"]
+colors = PackedColorArray(0, 0, 1, 1, 1, 0.42745098, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u0xbq"]
+gradient = SubResource("Gradient_ntc4i")
+
+[sub_resource type="Gradient" id="Gradient_u0xbq"]
+colors = PackedColorArray(5.0055983e-06, 0, 0.94147104, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pln1h"]
+gradient = SubResource("Gradient_u0xbq")
+
+[sub_resource type="Gradient" id="Gradient_8gixj"]
+colors = PackedColorArray(0, 1, 1, 1, 1, 0.8, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hf2sn"]
+gradient = SubResource("Gradient_8gixj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0xbq"]
+shader = ExtResource("11_6qxox")
+shader_parameter/angle = -0.2
+shader_parameter/thickness = 10.0
+shader_parameter/scale = 1.0
+shader_parameter/shear = Vector2(0, -0.4)
+shader_parameter/slices = 16
+shader_parameter/outline = true
+shader_parameter/outline_width = 2.0
+shader_parameter/front_tex = SubResource("GradientTexture2D_u0xbq")
+shader_parameter/back_tex = SubResource("GradientTexture2D_gthg3")
+shader_parameter/side_tex = SubResource("GradientTexture2D_hf2sn")
+shader_parameter/outline_tex = SubResource("GradientTexture2D_pln1h")
+shader_parameter/show_bound = false
+
+[sub_resource type="Animation" id="Animation_qq5q4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pivot_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gah1j"]
+resource_name = "scaled"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pivot_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(250, 50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ap2hy"]
+_data = {
+&"RESET": SubResource("Animation_qq5q4"),
+&"scaled": SubResource("Animation_gah1j")
+}
+
+[sub_resource type="Animation" id="Animation_8gixj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hf2sn"]
+resource_name = "scaled"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qq5q4"]
+_data = {
+&"RESET": SubResource("Animation_8gixj"),
+&"scaled": SubResource("Animation_hf2sn")
+}
 
 [node name="test scene" type="Node3D" unique_id=1569593579]
 
-[node name="desk" parent="." unique_id=1689809757 instance=ExtResource("1_g7g4h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000114142895, 0.0015710592, 0.0013322234)
+[node name="start" type="Node3D" parent="." unique_id=2003435683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.1, 0.7)
 
 [node name="car_rb" type="RigidBody3D" parent="." unique_id=1243711675]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15511832, 0.6976985, -0.3198015)
+transform = Transform3D(0.9971851, 1.3109696e-08, -0.074978724, 0, 1, 1.7484555e-07, 0.074978724, -1.7435339e-07, 0.9971851, 0.38, 0.1, 0.7)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_j8ivh")
-gravity_scale = 0.6
 linear_damp_mode = 1
+linear_damp = 3.0
 script = ExtResource("2_j8ivh")
+acceleration = 0.75
+turbo = 1.0
 metadata/_edit_group_ = true
 
 [node name="car_collision" type="CollisionShape3D" parent="car_rb" unique_id=791510496]
@@ -38,23 +225,300 @@ shape = SubResource("SphereShape3D_j8ivh")
 debug_color = Color(0.49310088, 0.43210077, 1, 0.41960785)
 
 [node name="car_remote_transform" type="RemoteTransform3D" parent="car_rb" unique_id=1221311582]
-remote_path = NodePath("../../car_mesh")
+remote_path = NodePath("../../car_model")
 update_rotation = false
 update_scale = false
 
+[node name="RayCast3D" type="RayCast3D" parent="car_rb" unique_id=1001406701]
+target_position = Vector3(0, -0.03, 0)
+collide_with_areas = true
+
+[node name="turbo_timer" type="Timer" parent="car_rb" unique_id=19856700]
+wait_time = 5.0
+one_shot = true
+
 [node name="car_mesh" type="MeshInstance3D" parent="." unique_id=1624518519]
-transform = Transform3D(0.61049294, 0, 0, 0, 1.2352648, 0, 0, 0, 1, -0.15511832, 0.6976985, -0.3198015)
+transform = Transform3D(0.61049294, 0, 0, 0, 1.2352648, 0, 0, 0, 1, 0.04, 0.0839952, -0.065)
+visible = false
 mesh = SubResource("SphereMesh_nd71p")
 
+[node name="car_model" parent="." unique_id=613858492 instance=ExtResource("2_gthg3")]
+transform = Transform3D(0.12881559, 0, -0.21425809, 0, 0.25, 0, 0.21425809, 0, 0.12881559, 0.38, 0.1, 0.7)
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1806469060]
-transform = Transform3D(-1, 7.615293e-15, -8.742277e-08, -8.485281e-08, 0.24068543, 0.9706032, 2.1041386e-08, 0.9706032, -0.24068543, -0.0003142357, 1.2253991, -0.14365998)
-script = ExtResource("3_7ddre")
+transform = Transform3D(1.1920929e-07, 0.2045026, -0.978866, 0.42451602, 0.8862853, 0.18516088, 0.9054204, -0.41554433, -0.08681452, 0.30541778, 1.3040719, 0.21298641)
+top_level = true
+environment = SubResource("Environment_hf2sn")
+fov = 58.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=809710929]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_h3xc6")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2099278296]
 transform = Transform3D(1, 0, 0, 0, -0.1472915, 0.9890931, 0, -0.9890931, -0.1472915, 0, 1.5373528, 0)
 
 [node name="respawn_area" parent="." unique_id=799529726 instance=ExtResource("4_qjeyg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.010341227, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17333803, 0)
 
 [node name="finish_area" parent="." unique_id=1657727005 instance=ExtResource("5_3qnke")]
-transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0.036733568, 0.69410753, -0.13550074)
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0.0608659, 0.11223523, -0.88992137)
+
+[node name="Sprite3D" type="Sprite3D" parent="finish_area" unique_id=940789530]
+transform = Transform3D(0.5000001, 0, 0, 0, 0.27773437, 0.4157688, 0, -0.4157689, 0.27773434, -0.66111827, 1.3338461, -0.25159264)
+texture = ExtResource("6_u0xbq")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=668723544 node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(1.19209226e-07, 0.20450257, -0.9788646, 0.42451578, 0.8862851, 0.1851606, 0.90541995, -0.41554427, -0.086814396, 0.30541778, 1.3040719, 0.21298641)
+script = ExtResource("6_s36qc")
+look_at_mode = 2
+look_at_target = NodePath("../car_pause")
+tween_resource = SubResource("Resource_ntc4i")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_u0xbq")
+environment = SubResource("Environment_u0xbq")
+up = Vector3(1, 0, 0)
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PhantomCam_external_controller" type="Node3D" parent="PhantomCamera3D" unique_id=866193508]
+transform = Transform3D(-0.999448, 0.033402152, 8.032752e-09, -0.0010247122, -0.030661156, 0.99953526, 0.033386223, 0.9989715, 0.030678218, -4.047291e-09, 9.685755e-08, -1.3066674)
+script = ExtResource("3_7ddre")
+min_x = -0.2
+max_x = 0.2
+min_z = -0.3
+max_z = 0.3
+
+[node name="desk4" parent="." unique_id=1064040913 instance=ExtResource("9_h3xc6")]
+
+[node name="lookat" type="Node3D" parent="." unique_id=1059186524]
+
+[node name="checkpoints" type="Node3D" parent="." unique_id=1863956086]
+transform = Transform3D(-4.371139e-09, 0.1, 4.371139e-09, 0, -4.371139e-09, 0.1, 0.1, 4.371139e-09, 1.9106854e-16, -0.46376428, 0.07446599, 0.0627498)
+
+[node name="checkpoint1" parent="checkpoints" unique_id=1098711719 instance=ExtResource("12_8gixj")]
+transform = Transform3D(1, -7.523163e-37, -2.1175824e-22, 0, 1.0000001, -3.5527137e-15, 2.1175821e-22, 3.5527137e-15, 1.0000001, 8.468638, 1.4568951, -0.22558385)
+
+[node name="checkpoint2" type="Area3D" parent="checkpoints" unique_id=1584484828]
+transform = Transform3D(1, 0, 1.2705494e-21, 0, 1, 8.3518755e-23, 1.2705494e-21, 8.3518724e-23, 1, 3.5991092, 3.6714125, -0.13838589)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoints/checkpoint2" unique_id=1034726535]
+transform = Transform3D(1, 0, 1.4823077e-20, 0, 1, 8.3519405e-23, 0, 8.3518667e-23, 1, -0.034240723, -0.013092101, 0)
+shape = SubResource("BoxShape3D_s36qc")
+debug_color = Color(0, 0.6, 0, 1)
+
+[node name="Label3D" type="Label3D" parent="checkpoints/checkpoint2" unique_id=776777018]
+text = "CHECKPOINT 2
+"
+font_size = 50
+
+[node name="Sprite3D" type="Sprite3D" parent="checkpoints/checkpoint2" unique_id=369320592]
+transform = Transform3D(0.25, 0, 5.293956e-23, 0, 0.25, 2.0879692e-23, 0, 2.0879667e-23, 0.25, 0, 0, -0.1350832)
+texture = ExtResource("11_ntc4i")
+
+[node name="checkpoint3" type="Area3D" parent="checkpoints" unique_id=725544169]
+transform = Transform3D(1, 0, 6.352747e-22, 0, 1, 8.351873e-23, 6.352747e-22, 8.3518724e-23, 1, 1.0156274, 6.109082, 2.3841858e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoints/checkpoint3" unique_id=1734755968]
+transform = Transform3D(1, 0, 0, 0, 1, 8.3518724e-23, 1.12231866e-20, 8.351872e-23, 1, 0.043281555, -0.010276794, 0)
+shape = SubResource("BoxShape3D_6qxox")
+debug_color = Color(0, 0.6, 0, 1)
+
+[node name="Label3D" type="Label3D" parent="checkpoints/checkpoint3" unique_id=1215310187]
+text = "CHECKPOINT 3"
+font_size = 50
+
+[node name="Sprite3D" type="Sprite3D" parent="checkpoints/checkpoint3" unique_id=580650458]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 2.0879681e-23, 5.293956e-23, 2.087968e-23, 0.25, 0, 0, -0.3117803)
+texture = ExtResource("11_ntc4i")
+
+[node name="checkpoint4" type="Area3D" parent="checkpoints" unique_id=1804337145]
+transform = Transform3D(1, 0, 2.3293406e-21, 0, 1, 8.3518806e-23, 2.5410988e-21, 8.3518724e-23, 1, -0.66327333, 0.32832813, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoints/checkpoint4" unique_id=360918654]
+transform = Transform3D(1, 0, 8.4703295e-22, 0, 1, 8.3518824e-23, 0, 8.351863e-23, 1, 0.039398193, -0.0008239746, 0)
+shape = SubResource("BoxShape3D_6qxox")
+debug_color = Color(0, 0.6, 0, 1)
+
+[node name="Label3D" type="Label3D" parent="checkpoints/checkpoint4" unique_id=1911939856]
+text = "CHECKPOINT 4"
+font_size = 50
+
+[node name="Sprite3D" type="Sprite3D" parent="checkpoints/checkpoint4" unique_id=897506054]
+transform = Transform3D(0.25, 0, 1.0587912e-22, 0, 0.25, 2.0879701e-23, 0, 2.0879657e-23, 0.25, 0, 0, -0.2475746)
+texture = ExtResource("11_ntc4i")
+
+[node name="checkpoint5" type="Area3D" parent="checkpoints" unique_id=1854935031]
+transform = Transform3D(1, -1.0658141e-14, 5.505714e-21, 0, 1.0000001, 3.5527137e-15, 6.140989e-21, -3.5527137e-15, 1.0000001, -3.6340735, 5.2563176, 1.1920929e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="checkpoints/checkpoint5" unique_id=507122050]
+transform = Transform3D(1, 0, 8.4703295e-22, 0, 1, 8.3518824e-23, 0, 8.351863e-23, 1, 0.039398193, -0.0008239746, 0)
+shape = SubResource("BoxShape3D_6qxox")
+debug_color = Color(0, 0.6, 0, 1)
+
+[node name="Label3D" type="Label3D" parent="checkpoints/checkpoint5" unique_id=1393479107]
+text = "CHECKPOINT 5"
+font_size = 50
+
+[node name="Sprite3D" type="Sprite3D" parent="checkpoints/checkpoint5" unique_id=1521927582]
+transform = Transform3D(0.25, 0, 1.0587912e-22, 0, 0.25, 2.0879701e-23, 0, 2.0879657e-23, 0.25, 0, 0, -0.2475746)
+texture = ExtResource("11_ntc4i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1217866287]
+script = ExtResource("10_s36qc")
+leaderboard_internal_name = "Vroom Leaderboard"
+
+[node name="congratulation text" type="RichTextLabel" parent="CanvasLayer" unique_id=1089626165]
+material = SubResource("ShaderMaterial_u0xbq")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -419.0
+offset_top = -169.0
+offset_right = 420.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 67
+text = "WOW !! BEST TIME EVER !"
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=684430069]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 559.0
+offset_top = 208.0
+offset_right = 559.0
+offset_bottom = 208.0
+
+[node name="turbo text" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=564497068]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.5
+offset_top = -56.5
+offset_right = 289.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0, 0, 0.6509804, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.7137255, 0.007843138, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/normal_font_size = 70
+text = "B FOR TURBO !!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/turbo text" unique_id=1366922298]
+libraries/ = SubResource("AnimationLibrary_ap2hy")
+
+[node name="current time" type="RichTextLabel" parent="CanvasLayer" unique_id=1774885909]
+offset_top = 52.0
+offset_right = 493.0
+offset_bottom = 101.0
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.7137255, 0.007843138, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "CURRENT TIME :"
+
+[node name="best time" type="RichTextLabel" parent="CanvasLayer" unique_id=1129802043]
+offset_right = 450.0
+offset_bottom = 48.0
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.7137255, 0.007843138, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "BEST TIME :"
+
+[node name="start text" type="RichTextLabel" parent="CanvasLayer" unique_id=573443802]
+material = SubResource("ShaderMaterial_u0xbq")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.0
+offset_top = 148.0
+offset_right = 375.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 67
+text = "PRESS SPACE TO START"
+
+[node name="checkpoint ui" type="Control" parent="CanvasLayer" unique_id=468293053]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="checkpoints text" type="RichTextLabel" parent="CanvasLayer/checkpoint ui" unique_id=1936773983]
+layout_mode = 0
+offset_left = -245.0
+offset_top = 26.0
+offset_right = 100.0
+offset_bottom = 69.0
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.7137255, 0.007843138, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "CHECKPOINTS : 0/4"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/checkpoint ui" unique_id=748906055]
+layout_mode = 0
+offset_left = -322.0
+offset_top = 5.0
+offset_right = -251.0
+offset_bottom = 83.0
+texture = ExtResource("11_ntc4i")
+expand_mode = 1
+
+[node name="checkpoint anim" type="AnimationPlayer" parent="CanvasLayer/checkpoint ui/TextureRect" unique_id=906304117]
+libraries/ = SubResource("AnimationLibrary_qq5q4")
+
+[node name="Username" type="TextEdit" parent="CanvasLayer" unique_id=540654951]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 40)
+offset_left = 367.0
+offset_top = 395.0
+offset_right = 767.0
+offset_bottom = 435.0
+size_flags_horizontal = 4
+theme = ExtResource("16_hf2sn")
+placeholder_text = "Username"
+
+[node name="Entries" type="VBoxContainer" parent="CanvasLayer" unique_id=371905073]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(2.08165e-12, 32)
+offset_left = 332.0
+offset_top = 255.0
+offset_right = 332.0
+offset_bottom = 287.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="car_pause" parent="." unique_id=164155965 instance=ExtResource("2_gthg3")]
+transform = Transform3D(-0.47537845, 0, -0.8797814, 0, 1, 0, 0.8797814, 0, -0.47537845, 1.5425081, 1.0700657, 0.3227027)
+script = ExtResource("15_pln1h")
+
+[connection signal="check" from="car_rb" to="CanvasLayer" method="_on_car_rb_check"]
+[connection signal="timeout" from="car_rb/turbo_timer" to="car_rb" method="_on_turbo_timer_timeout"]
+[connection signal="body_entered" from="respawn_area" to="car_rb" method="_on_respawn_area_body_entered"]
+[connection signal="body_entered" from="finish_area" to="CanvasLayer" method="_on_finish_area_body_entered"]
+[connection signal="body_entered" from="checkpoints/checkpoint1" to="car_rb" method="_on_checkpoint_1_body_entered"]
+[connection signal="body_entered" from="checkpoints/checkpoint2" to="car_rb" method="_on_checkpoint_2_body_entered"]
+[connection signal="body_entered" from="checkpoints/checkpoint3" to="car_rb" method="_on_checkpoint_3_body_entered"]
+[connection signal="body_entered" from="checkpoints/checkpoint4" to="car_rb" method="_on_checkpoint_4_body_entered"]
+[connection signal="body_entered" from="checkpoints/checkpoint5" to="car_rb" method="_on_checkpoint_5_body_entered"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dy1376ch8fex2"]
+
+[ext_resource type="PackedScene" uid="uid://blkux7c652r07" path="res://blender3/car_model.blend" id="1_bg842"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bg842"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bg842"]
+radius = 0.2
+
+[node name="car_model" unique_id=1313996111 instance=ExtResource("1_bg842")]
+
+[node name="3DModel" parent="." index="0" unique_id=530610639]
+transform = Transform3D(0.6666161, 0.7159471, -0.20746748, -0.1828685, -0.11274616, -0.97665113, -0.7226217, 0.6889906, 0.055765763, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="3DModel" index="0" unique_id=1941593029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0052384436, 0.018296376, 0.004237689)
+physics_material_override = SubResource("PhysicsMaterial_bg842")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3DModel/StaticBody3D" index="0" unique_id=1541093026]
+shape = SubResource("SphereShape3D_bg842")

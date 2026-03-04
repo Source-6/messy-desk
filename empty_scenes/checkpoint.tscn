@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bgpp51jxo8fw8"]
+
+[ext_resource type="Texture2D" uid="uid://dxce57mrsypg1" path="res://assets/checkpoint.png" id="1_pshrs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3xc6"]
+size = Vector3(1.5674438, 1.5037842, 1)
+
+[node name="checkpoint1" type="Area3D" unique_id=1098711719]
+transform = Transform3D(1, -3.5527137e-15, 4.2351647e-22, 0, 1.0000001, -3.5527137e-15, 2.1175824e-22, 3.5527137e-15, 1.0000001, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=272565968]
+transform = Transform3D(1, -2.842171e-14, -2.1175824e-22, 0, 1.0000002, 1.0658141e-14, 1.5881868e-20, -1.0658141e-14, 1.0000002, 0.0015554428, -0.072327375, 0)
+shape = SubResource("BoxShape3D_h3xc6")
+debug_color = Color(0, 0.6, 0, 1)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=551765217]
+text = "CHECKPOINT 1"
+font_size = 50
+uppercase = true
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=892873441]
+transform = Transform3D(0.25, -8.881784e-16, 0, 0, 0.25000003, 8.881784e-16, 5.293956e-23, -8.881784e-16, 0.25000003, 0, 0, -0.1592505)
+texture = ExtResource("1_pshrs")

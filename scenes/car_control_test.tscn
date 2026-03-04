@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://b6e141ubufo03"]
 
 [ext_resource type="Script" uid="uid://bshw7w5vne1sa" path="res://scenes/car.gd" id="1_71vr3"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_73rtd"]
+[ext_resource type="Script" uid="uid://b2e8to3rpki84" path="res://scenes/camera_3d.gd" id="3_73rtd"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_gdr7q"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_c4njl"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="5_wnnla"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x8tr6"]
-friction = 0.15
+friction = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lunca"]
 radius = 0.03
@@ -15,10 +20,21 @@ height = 0.02
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71vr3"]
 albedo_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
 
+[sub_resource type="Resource" id="Resource_60vp1"]
+script = ExtResource("4_c4njl")
+
+[sub_resource type="Resource" id="Resource_jhq83"]
+script = ExtResource("5_wnnla")
+fov = 58.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gdr7q"]
+size = Vector3(0.30908203, 0.35894775, 0.2859497)
+
 [node name="car_control_test" type="Node3D" unique_id=963517629]
 
 [node name="car_rb" type="RigidBody3D" parent="." unique_id=1969876988]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8758757, 0.46277082, -0.04836029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40154934, 0.21732676, 0)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -38,17 +54,50 @@ update_rotation = false
 update_scale = false
 
 [node name="car_mesh" type="MeshInstance3D" parent="." unique_id=1302582120]
-transform = Transform3D(0.63, 0, 0, 0, 1, 0, 0, 0, 1, 0.8758757, 0.46277082, -0.04836029)
+transform = Transform3D(0.63, 0, 0, 0, 1, 0, 0, 0, 1, -0.40154934, 0.21732676, 0)
 mesh = SubResource("SphereMesh_haeab")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=296547729]
-transform = Transform3D(1, 0, 0, 0, 0.45793602, 0.88898516, 0, -0.88898516, 0.45793602, 0, 1.0570593, 0.88915277)
+transform = Transform3D(-0.99944186, 0.009609124, 0.031989917, 0.033401944, 0.28752112, 0.95719165, 1.8626451e-09, 0.95772606, -0.28768146, 0.0436247, 1.3053237, -0.3923118)
+top_level = true
+fov = 58.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=598871181]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_73rtd")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=300279434]
 transform = Transform3D(1, 0, 0, 0, 0.05725037, 0.99835986, 0, -0.99835986, 0.05725037, 0, 3.2459927, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=39067390]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55908203, -0.41748047, -0.19677734)
 use_collision = true
 size = Vector3(2.118164, 0.16503906, 3.2685547)
 material = SubResource("StandardMaterial3D_71vr3")
+
+[node name="cam_lookat" type="Node3D" parent="." unique_id=1843862473]
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1913888006 node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(-0.99943554, 0.009609067, 0.031989913, 0.03340173, 0.2875194, 0.9571915, 1.8626334e-09, 0.95772034, -0.28768143, 0.0436247, 1.3053237, -0.3923118)
+script = ExtResource("3_gdr7q")
+look_at_mode = 2
+look_at_target = NodePath("../cam_lookat")
+tween_resource = SubResource("Resource_60vp1")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_jhq83")
+up = Vector3(0, 0, 1)
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PhantomCam_external_controller" type="Node3D" parent="PhantomCamera3D" unique_id=1675785029]
+transform = Transform3D(-0.999448, 0.033402152, 8.032752e-09, -0.0010247122, -0.030661156, 0.99953526, 0.033386223, 0.9989715, 0.030678218, -4.047291e-09, 9.685755e-08, -1.3066674)
+script = ExtResource("3_73rtd")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1350266685]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=105917082]
+transform = Transform3D(1, 0, 0, 0, 0.7942131, -0.60763925, 0, 0.60763925, 0.7942131, -0.34545898, 0.025061965, -0.35702515)
+shape = SubResource("BoxShape3D_gdr7q")
+debug_color = Color(0.7211874, 0.35972208, 0.8046313, 1)
